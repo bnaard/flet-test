@@ -6,11 +6,23 @@
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/pipx-package:1": {},
-		"ghcr.io/devcontainers-contrib/features/poetry:2": {}
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
 	},
 
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "eamodio.gitlens"
+            ]
+        }
+    },
+
 	"forwardPorts": [8550],
-	"postStartCommand": "poetry config virtualenvs.in-project true",
+	"postStartCommand": [ 
+		"poetry config virtualenvs.in-project true", 
+	    "git config --global user.name 'Bnaard'",
+		"git config --global user.email 'bnaard@gmx.net'"
+	],
 	"workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename}",
 	"runArgs": ["--userns=keep-id:uid=1000,gid=1000"],
     "containerUser": "vscode",
